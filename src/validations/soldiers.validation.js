@@ -30,10 +30,10 @@ export const createFirstBenfitSchema = z.object({
 
   bedgetApproved: z.boolean(),
 
-  startDat: z.date().optional(),
+  startDate: z.coerce.date().optional(),
 });
 
-const benefitUpdate = z.object({
+export const benefitUpdate = z.object({
   benefitType: z.enum(["giftCard", "dinigHall"]),
 
   details: z.object(),
@@ -42,5 +42,5 @@ const benefitUpdate = z.object({
 
   bedgetApproved: z.boolean(),
 
-  decisionDate: z.date().optional()
+  decisionDate: z.coerce.date().optional()
 });

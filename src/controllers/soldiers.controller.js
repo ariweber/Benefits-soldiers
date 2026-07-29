@@ -1,4 +1,8 @@
-import { createBenefits, getBenefitsBySoldier } from "../services/soldiers.servise.js";
+import {
+  createBenefits,
+  getBenefitsBySoldier,
+  updateBenefit,
+} from "../services/soldiers.servise.js";
 
 export async function createBenefitsController(req, res, next) {
   try {
@@ -9,10 +13,20 @@ export async function createBenefitsController(req, res, next) {
   }
 }
 
+
 export async function getBenefitsController(req, res, next) {
   try {
     const benefit = await getBenefitsBySoldier(req.params.soldierID);
     res.json({ data: benefit });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function updateBenefitController(req, res, next) {
+  try {
+    const updated = await updateBenefit(req.params.soldierID, req.body);
+    res.json({ data: updated });
   } catch (error) {
     next(error);
   }
