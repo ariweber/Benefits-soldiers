@@ -21,10 +21,16 @@ export function getById(id){
     return benefit
 }
 
+function getBySoldierID(soldierID){
+    const benefit = benefitsCollection.findOne({ soldierID: new ObjectId(soldierID) })
+    return benefit
+}
+
 
 export const benfitsRepo = {
     addBenfits: createBenfits,
     soldierIsExsits: soldeirIDexsits,
-    getBenfitById: getById
+    getBenfitById: getById,
+    getBenfitsBySoldierID: getBySoldierID
 
 }

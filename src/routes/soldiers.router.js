@@ -4,7 +4,10 @@ import {
   validateParams,
 } from "../middlewares/soldier.middlewar.js";
 import { soldierIDParamsSchema } from "../validations/soldiers.validation.js";
-import { createBenefitsController } from "../controllers/soldiers.controller.js";
+import {
+  createBenefitsController,
+  getBenefitsController,
+} from "../controllers/soldiers.controller.js";
 
 const router = express.Router();
 
@@ -15,11 +18,13 @@ router.post(
   createBenefitsController,
 );
 
-router.get("/:soldierID/benfits", (req, res) => {
-  res.json();
-});
+router.get(
+  "/:soldierID/benfits",
+  validateParams(soldierIDParamsSchema),
+  getBenefitsController,
+);
 
-router.patch("/:soldierID/transactions", (req, res) => {
+router.get("/:soldierID/transactions", (req, res) => {
   res.json();
 });
 

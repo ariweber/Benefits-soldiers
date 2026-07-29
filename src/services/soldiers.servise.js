@@ -20,3 +20,9 @@ export async function createBenefits(soldierID, data) {
   const newBenfit = await benfitsRepo.addBenfits(soldierID, benefit);
   return { _id: newBenfit.insertedId, soldierID, ...benefit };
 }
+
+export async function getBenefitsBySoldier(soldierID) {
+  const benefit = await benfitsRepo.getBenfitsBySoldierID(soldierID);
+  if (!benefit) throw createError(404, "Benefits not found for this soldier");
+  return benefit;
+}
