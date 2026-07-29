@@ -3,12 +3,28 @@ import { ObjectId } from "mongodb";
 
 const benefitsCollection = db.collection("benefits");
 
-async function createUser(benfit) {
+async function createBenfits(soldierID, benfit) {
   const result = await benefitsCollection.insertOne({
     ...benfit,
-    history: [],
+    soldierID: new ObjectId(soldierID),
   });
-  return result.insertedId.toString();
+  return result;
+}
+
+async function soldeirIDexsits(id){
+  const benfit = await benefitsCollection.findOne({ soldierID: new ObjectId(id) });
+  return benfit !== null;
+}
+
+export function getById(id){
+    const benefit = benefitsCollection.findOne({_id: new ObjectId(id)})
+    return benefit
 }
 
 
+export const benfitsRepo = {
+    addBenfits: createBenfits,
+    soldierIsExsits: soldeirIDexsits,
+    getBenfitById: getById
+
+}
