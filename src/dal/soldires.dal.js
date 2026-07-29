@@ -16,21 +16,18 @@ async function soldeirIDexsits(id){
   return benfit !== null;
 }
 
-export function getById(id){
-    const benefit = benefitsCollection.findOne({_id: new ObjectId(id)})
+
+export async function getBySoldierID(soldierID){
+    const benefit = await benefitsCollection.findOne({ soldierID: new ObjectId(soldierID) })
     return benefit
 }
 
-function getBySoldierID(soldierID){
-    const benefit = benefitsCollection.findOne({ soldierID: new ObjectId(soldierID) })
-    return benefit
-}
+
 
 
 export const benfitsRepo = {
     addBenfits: createBenfits,
     soldierIsExsits: soldeirIDexsits,
-    getBenfitById: getById,
     getBenfitsBySoldierID: getBySoldierID
 
 }
