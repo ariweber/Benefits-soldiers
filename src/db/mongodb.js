@@ -1,0 +1,15 @@
+import {MongoClient} from "mongodb"
+import "dotenv/config"
+
+
+export const client = new MongoClient(process.env.MONGO_URL);
+
+
+try {
+  await client.connect()
+  console.log("mongo connected")
+} catch (error) {
+  console.log(error.message)
+}
+
+export const db = client.db("exsem")
