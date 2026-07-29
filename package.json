@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mongodb": "^7.5.0"
   },
@@ -7,9 +8,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "start": "node --watch app.js",
+    "start": "node --watch src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
