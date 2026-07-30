@@ -17,10 +17,12 @@ app.get("/", (req, res) => {
 app.use("/soldiers", soldiersRouter);
 app.use("/budgets", budgetRouter);
 
+
 app.use((error, req, res, next) => {
-  res.status(error.status || 500).json({
+  const status = error.status || 500;
+  res.status(status).json({
     success: false,
-    message: error.message,
+    message: status === 500 ? "internal server error" : error.message,
   });
 });
 

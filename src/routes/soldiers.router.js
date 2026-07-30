@@ -1,10 +1,10 @@
 import express from "express";
+import { validate, validateParams } from "../middlewares/soldier.middleware.js";
 import {
-  validateBenefitBody,
-  validateBenefitUpdateBody,
-  validateParams,
-} from "../middlewares/soldier.middlewar.js";
-import { soldierIDParamsSchema } from "../validations/soldiers.validation.js";
+  soldierIDParamsSchema,
+  createBenefitSchema,
+  updateBenefitSchema,
+} from "../validations/soldiers.validation.js";
 import {
   createBenefitsController,
   getBenefitsController,
@@ -14,23 +14,22 @@ import {
 const router = express.Router();
 
 router.post(
-  "/:soldierID/benfits",
+  "/:soldierID/benefits",
   validateParams(soldierIDParamsSchema),
-  validateBenefitBody,
+  validate(createBenefitSchema),
   createBenefitsController,
 );
 
 router.get(
-  "/:soldierID/benfits",
+  "/:soldierID/benefits",
   validateParams(soldierIDParamsSchema),
   getBenefitsController,
 );
 
-
 router.patch(
-  "/:soldierID/sepend",
+  "/:soldierID/benefits",
   validateParams(soldierIDParamsSchema),
-  validateBenefitUpdateBody,
+  validate(updateBenefitSchema),
   updateBenefitController,
 );
 

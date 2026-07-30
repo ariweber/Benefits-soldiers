@@ -2,7 +2,7 @@ import {
   createBenefits,
   getBenefitsBySoldier,
   updateBenefit,
-} from "../services/soldiers.servise.js";
+} from "../services/soldiers.service.js";
 
 export async function createBenefitsController(req, res, next) {
   try {
