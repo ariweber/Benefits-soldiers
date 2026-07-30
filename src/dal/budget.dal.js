@@ -57,7 +57,7 @@ async function createSpend(spend) {
     .select()
     .single();
   if (error) throw error;
-  return data;
+  return data 
 }
 
 export const spendRepo = {

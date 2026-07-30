@@ -44,5 +44,5 @@ export async function spendFromBudget(budgetId, data) {
     amount: data.amount,
     reason: data.reason,
   });
-  return created;
+  return { ...created, remainingAmount: remainingAmount - created.amount };
 }

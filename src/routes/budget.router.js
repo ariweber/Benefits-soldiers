@@ -1,23 +1,41 @@
-import express from "express"
+import express from "express";
+import {
+  createBudgetController,
+  searchBudgetsController,
+  getTransactionsController,
+  spendBudgetController,
+} from "../controllers/budget.controller.js";
 
-const router = express.Router()
+import {
+  validate,
+  validateQuery,
+  validateParams,
+} from "../middlewares/soldier.middleware.js";
 
-router.post("/",(req,res)=>{
-    res.json()
-})
+import {
+  createBudgetSchema,
+  queryBudgetSchema,
+  spendBudgetSchema,
+  budgetIdParamsSchema,
+} from "../validations/budget.validation.js";
 
+const router = express.Router();
 
-router.get("/",(req,res)=>{
-    res.json()
-})
+router.post("/", validate(createBudgetSchema), createBudgetController);
 
+router.get("/", validateQuery(queryBudgetSchema), searchBudgetsController);
 
-router.get("/:id/transactions",(req,res)=>{
-    res.json()
-})
+router.get(
+  "/:budgetId/transactions",
+  validateParams(budgetIdParamsSchema),
+  getTransactionsController,
+);
 
-router.get("/:id/sepend",(req,res)=>{
-    res.json()
-})
+router.post(
+  "/:budgetId/spend",
+  validateParams(budgetIdParamsSchema),
+  validate(spendBudgetSchema),
+  spendBudgetController,
+);
 
-export default router
+export default router;

@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/soldiers", soldiersRouter);
-app.use("/budgets", budgetRouter);
+app.use("/budget", budgetRouter);
 
 
 app.use((error, req, res, next) => {

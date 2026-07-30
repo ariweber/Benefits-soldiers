@@ -1,8 +1,9 @@
 import { z } from "zod";
+import { validMonth } from "../utils/valid.utils.js";
 
 const monthSchema = z
   .string()
-  .format("YYYY-MM")
+  .refine(validMonth, "month must be in YYYY-MM format, e.g. 2026-09");
 
 export const createBudgetSchema = z.object({
   unit: z.string().trim(),
@@ -17,7 +18,12 @@ export const queryBudgetSchema = z.object({
   benfitType: z.string().trim().optional(),
 });
 
+
 export const spendBudgetSchema = z.object({
   amount: z.coerce.number().int().positive(),
-  reasson: z.string().trim(),
+  reason: z.string().trim(),
+});
+
+export const budgetIdParamsSchema = z.object({
+  budgetId: z.coerce.number().int().positive(),
 });
