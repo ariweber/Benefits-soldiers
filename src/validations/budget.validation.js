@@ -1,15 +1,19 @@
 import { z } from "zod";
 
+const monthSchema = z
+  .string()
+  .format("YYYY-MM")
+
 export const createBudgetSchema = z.object({
   unit: z.string().trim(),
   benfitType: z.enum(["giftCard", "diningHall"]),
-  month: z.coerce.date(),
+  month: monthSchema,
   allocatedAmount: z.coerce.number().int().positive(),
 });
 
 export const queryBudgetSchema = z.object({
   unit: z.string().trim().optional(),
-  month: z.coerce.date().optional(),
+  month: monthSchema.optional(),
   benfitType: z.string().trim().optional(),
 });
 
