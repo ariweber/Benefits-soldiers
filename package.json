@@ -9,7 +9,7 @@
   "name": "benefits-soldiers",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "node --watch src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"

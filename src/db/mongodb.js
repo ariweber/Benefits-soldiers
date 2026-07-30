@@ -9,7 +9,8 @@ try {
   await client.connect()
   console.log("mongo connected")
 } catch (error) {
-  console.log(error.message)
+  console.error("mongo connection failed:", error.message)
+  process.exit(1)
 }
 
-export const db = client.db("exsem")
+export const db = client.db(process.env.DB_NAME)
