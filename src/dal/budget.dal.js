@@ -1,7 +1,11 @@
 import { supabase } from "../db/supabase.js";
 
 async function createBudget(budget) {
-  const { data, error } = await supabase.from("budget").insert(budget).select();
+  const { data, error } = await supabase
+    .from("budget")
+    .insert(budget)
+    .select()
+    .single();
   if (error) throw error;
   return data;
 }
@@ -47,7 +51,11 @@ async function getTransactionsBybudGetID(id) {
 }
 
 async function createSpend(spend) {
-  const { data, error } = await supabase.from("spend").insert(spend).select();
+  const { data, error } = await supabase
+    .from("spend")
+    .insert(spend)
+    .select()
+    .single();
   if (error) throw error;
   return data;
 }
@@ -59,4 +67,3 @@ export const spendRepo = {
   getTransactionsBybudGetId: getTransactionsBybudGetID,
   addSpend: createSpend,
 };
-
