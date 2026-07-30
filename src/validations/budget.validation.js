@@ -9,7 +9,7 @@ export const createBudgetSchema = z.object({
   unit: z.string().trim(),
   benfitType: z.enum(["giftCard", "diningHall"]),
   month: monthSchema,
-  allocatedAmount: z.coerce.number().int().positive(),
+  allocatedAmount: z.coerce.number().positive(),
 });
 
 export const queryBudgetSchema = z.object({
@@ -20,7 +20,7 @@ export const queryBudgetSchema = z.object({
 
 
 export const spendBudgetSchema = z.object({
-  amount: z.coerce.number().int().positive(),
+  amount: z.coerce.number().positive(),
   reason: z.string().trim(),
 });
 
